@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { BookingForm } from "@/components/BookingForm";
 import { Faq } from "@/components/Faq";
 import { site } from "@/lib/site";
@@ -23,36 +24,50 @@ const reasons = [
     body: "Get in after work without burning your hands on the wheel.",
   },
   {
-    title: "Holds glass together",
+    title: "Holds the glass together",
     body: "If a window breaks, the film helps keep the pieces in place.",
   },
   {
     title: "Dark in the back, legal up front",
-    body: "Rear windows can go as dark as you want. Fronts stay at 25% or lighter, which is the Texas rule.",
-  },
-  {
-    title: "No signal problems",
-    body: "Cheap metalized tint can mess with antennas. This ceramic doesn't.",
+    body: "Rear windows as dark as you want. Fronts stay Texas-legal.",
   },
 ];
 
 const strip = [
-  "No deposit",
   "Ceramic film",
-  "Legal front shades",
-  `${site.city}`,
-  "2016 and newer",
-  "Pay at the shop",
+  "Cuts heat",
+  "Blocks UV",
+  site.city,
+  "Legal fronts",
+  "Book online",
 ];
 
 const included = [
   "Four doors and the back window",
   "Ceramic IR film",
-  "Legal shade on the front windows",
+  "Texas-legal front windows",
 ];
 
 const heroImage =
   "https://images.unsplash.com/photo-1485291571150-772bcfc10da5?auto=format&fit=crop&w=2000&q=80";
+
+/** Stock mood shots only — not shop photos. Pexels 11668013 and 4824424. */
+const moodShots = [
+  {
+    src: "/mood/parked-sun.jpg",
+    alt: "A hatchback sitting in a bright parking lot under a clear sky",
+    label: "Parked in the sun",
+    caption: "Ceramic keeps the cabin from baking.",
+    objectPosition: "center 72%",
+  },
+  {
+    src: "/mood/cabin-glare.jpg",
+    alt: "Sunlight coming through a windshield onto the steering wheel",
+    label: "Through the glass",
+    caption: "Less glare. Less heat on the dash.",
+    objectPosition: "center",
+  },
+];
 
 export default function Home() {
   return (
@@ -65,11 +80,27 @@ export default function Home() {
       </div>
 
       <header className="sticky top-0 z-30 flex items-center justify-between border-b border-white/10 bg-black/70 px-4 py-3 backdrop-blur-md sm:px-8">
-        <a href="#book" className="flex items-center gap-2">
-          <span className="grid h-8 w-8 place-items-center rounded-md bg-sky-500 text-[10px] font-black tracking-tight">
-            IR
+        <a
+          href="#book"
+          aria-label={site.name}
+          className="flex items-center gap-2.5"
+        >
+          <Image
+            src={site.logoMark}
+            alt=""
+            width={36}
+            height={36}
+            className="h-9 w-9 rounded-md"
+            priority
+          />
+          <span className="leading-none" aria-hidden="true">
+            <span className="block text-sm font-semibold tracking-tight text-white sm:text-[15px]">
+              {site.shortName}
+            </span>
+            <span className="mt-1 block text-[10px] font-semibold uppercase tracking-[0.22em] text-sky-400">
+              Texas
+            </span>
           </span>
-          <span className="text-sm font-semibold sm:text-base">{site.name}</span>
         </a>
         <a
           href={site.phoneHref}
@@ -99,26 +130,24 @@ export default function Home() {
               </span>
             </h1>
             <p className="mt-5 max-w-lg text-base leading-7 text-white/75">
-              Four doors and the back window. Ceramic film, so it cuts heat and
-              UV without messing with your radio. Book a time here. Pay when
-              you pick the car up.
+              Ceramic on four doors and the back glass. It cuts heat and UV
+              without killing your radio. Book a time in {site.city}.
             </p>
             <div className="mt-6 flex flex-wrap items-baseline gap-3">
               <span className="text-5xl font-bold text-white">
                 ${site.offerPrice}
               </span>
               <span className="text-sm text-white/50">
-                Same job is usually closer to ${site.regularPrice} around town.
-                Rate is for {site.minVehicleYear} and newer sedans and
-                crossovers.
+                Full sedan in ceramic. Most shops around here want closer to $
+                {site.regularPrice}.
               </span>
             </div>
             <div className="mt-8 max-w-md border-l-2 border-sky-400 bg-black/35 px-5 py-4">
               <p className="text-sm font-semibold text-white">
-                Tell us when you want to come in.
+                Ready when you are.
               </p>
               <p className="mt-1 text-sm text-white/60">
-                We’ll text to confirm. No deposit.
+                Pick a time. We’ll confirm by text.
               </p>
             </div>
           </div>
@@ -140,68 +169,68 @@ export default function Home() {
       </div>
 
       <section className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6">
-        <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-sky-400">
-              Full sedan
-            </p>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight">
-              What’s included
-            </h2>
-            <p className="mt-3 text-sm leading-6 text-white/60">
-              Windshield, sunroof, and peeling old tint cost extra. Tell us in
-              the notes if you need them.
-            </p>
-            <ul className="mt-5 space-y-2 text-sm text-white/75">
-              {included.map((item) => (
-                <li key={item} className="flex gap-2">
-                  <span className="text-sky-400">•</span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-            <a
-              href="#book"
-              className="mt-6 inline-flex rounded-md bg-sky-500 px-6 py-3 text-sm font-semibold text-white hover:bg-sky-400"
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-sky-400">
+          The ${site.offerPrice} sedan
+        </p>
+        <h2 className="mt-2 text-3xl font-bold tracking-tight">
+          What’s included
+        </h2>
+        <p className="mt-3 max-w-2xl text-sm leading-6 text-white/60">
+          A full sedan in ceramic. Cooler cabin, less fade, legal in Texas.
+        </p>
+        <div className="mt-8 grid gap-4 sm:grid-cols-3">
+          {included.map((item) => (
+            <article
+              key={item}
+              className="rounded-xl border border-white/10 bg-white/[0.03] px-5 py-6"
             >
-              Book ${site.offerPrice}
-            </a>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold">Add-ons</h3>
-            <p className="mt-1 text-sm text-white/50">
-              Tell us in the notes if you want any of these.
-            </p>
-            <div className="mt-4 grid gap-3 sm:grid-cols-2">
-              {site.addOns.map((item) => (
-                <article
-                  key={item.name}
-                  className="rounded-xl border border-white/10 bg-white/[0.03] p-4"
-                >
-                  <div className="flex items-start justify-between gap-3">
-                    <h4 className="font-semibold">{item.name}</h4>
-                    <span className="shrink-0 text-sky-400">${item.price}</span>
-                  </div>
-                  <p className="mt-2 text-sm leading-6 text-white/55">
-                    {item.blurb}
-                  </p>
-                </article>
-              ))}
-            </div>
-          </div>
+              <p className="font-semibold text-white">{item}</p>
+            </article>
+          ))}
         </div>
+        <a
+          href="#book"
+          className="mt-8 inline-flex rounded-md bg-sky-500 px-6 py-3 text-sm font-semibold text-white hover:bg-sky-400"
+        >
+          Book ${site.offerPrice}
+        </a>
       </section>
 
       <section className="border-y border-white/10 bg-black/40 px-4 py-16 sm:px-6">
         <div className="mx-auto max-w-6xl">
-          <h2 className="max-w-xl text-3xl font-bold tracking-tight">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-sky-400">
+            Built for {site.city}
+          </p>
+          <h2 className="mt-2 max-w-xl text-3xl font-bold tracking-tight">
             Why ceramic
           </h2>
           <p className="mt-3 max-w-2xl text-sm leading-6 text-white/60">
-            Dyed film just makes the glass darker. It still gets hot, and it
-            can go purple in a few years. Ceramic is what you want in{" "}
-            {site.city}.
+            Dyed tint just makes the glass darker. It still gets hot, and it
+            can go purple. Ceramic is what you want in this heat.
           </p>
+          <div className="mt-8 grid gap-4 md:grid-cols-2">
+            {moodShots.map((shot) => (
+              <figure
+                key={shot.src}
+                className="overflow-hidden rounded-xl border border-white/10 bg-black"
+              >
+                <div className="relative h-64 w-full sm:h-80">
+                  <Image
+                    src={shot.src}
+                    alt={shot.alt}
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-cover"
+                    style={{ objectPosition: shot.objectPosition }}
+                  />
+                </div>
+                <figcaption className="border-t border-white/10 px-4 py-3">
+                  <p className="text-sm font-semibold text-white">{shot.label}</p>
+                  <p className="mt-0.5 text-sm text-white/55">{shot.caption}</p>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {facts.map((fact) => (
               <article
@@ -230,9 +259,8 @@ export default function Home() {
       <section className="mx-auto w-full max-w-3xl px-4 py-16 sm:px-6">
         <h2 className="text-3xl font-bold tracking-tight">Texas tint law</h2>
         <p className="mt-3 text-sm leading-6 text-white/60">
-          Front windows have to let at least 25% of light through, counting
-          the factory glass and the film. We don’t do 5% on the fronts. Rear
-          windows can be as dark as you want.
+          Fronts stay legal. Rears as dark as you want. We’ll set the shades
+          when you’re here.
         </p>
         <div className="mt-8 overflow-hidden rounded-xl border border-white/10">
           <table className="w-full text-left text-sm">
@@ -267,7 +295,7 @@ export default function Home() {
             Get on the schedule
           </h2>
           <p className="mt-3 max-w-xl text-sky-100">
-            Takes a minute. No deposit. We’ll confirm by text.
+            Pick a time. We’ll confirm by text.
           </p>
           <a
             href="#book"

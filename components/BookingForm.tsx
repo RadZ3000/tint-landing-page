@@ -69,11 +69,13 @@ export function BookingForm() {
     return (
       <div className="rounded-2xl border border-sky-400/30 bg-black/55 p-8 text-center backdrop-blur-md">
         <p className="text-sm font-semibold tracking-[0.2em] text-sky-400">
-          Got it
+          You’re booked
         </p>
-        <h3 className="mt-3 text-2xl font-bold text-white">We’ll text you to confirm.</h3>
+        <h3 className="mt-3 text-2xl font-bold text-white">
+          We’ll text you to confirm.
+        </h3>
         <p className="mt-2 text-sm leading-6 text-white/70">
-          Nothing came off a card. Sit tight and we’ll lock in the time.
+          Sit tight. We’ll lock in the time.
         </p>
         <button
           type="button"
@@ -95,7 +97,7 @@ export function BookingForm() {
         Book your install
       </h3>
       <p className="mt-1 text-center text-sm text-white/55">
-        No deposit. You pay when the car’s done.
+        Ceramic sedan · ${site.offerPrice}
       </p>
 
       <div className="mt-5 space-y-3">
@@ -166,10 +168,6 @@ export function BookingForm() {
             ))}
           </select>
         </div>
-        <p className="text-center text-[11px] text-white/40">
-          ${site.offerPrice} is for {site.minVehicleYear} and newer sedans and
-          crossovers. Older cars, vans, and extra glass get a quote.
-        </p>
         <div className="grid grid-cols-2 gap-2">
           <label className="block">
             <span className="mb-1 block text-[11px] font-semibold uppercase tracking-wider text-white/40">
@@ -206,7 +204,7 @@ export function BookingForm() {
         <textarea
           name="notes"
           rows={2}
-          placeholder="Anything we should know? Old tint, shade, sunroof…"
+          placeholder="Anything we should know?"
           className={`${fieldClass} resize-none`}
         />
       </div>
@@ -223,8 +221,7 @@ export function BookingForm() {
         {status === "saving" ? "Sending…" : "Book now"}
       </button>
       <p className="mt-3 text-center text-[11px] text-white/40">
-        No payment today. Ceramic at most Houston shops runs closer to $
-        {site.regularPrice}.
+        Most Houston shops charge closer to ${site.regularPrice} for ceramic.
       </p>
     </form>
   );

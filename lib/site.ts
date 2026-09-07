@@ -3,8 +3,11 @@
  * Stripe, SMS, and calendars are intentionally unwired.
  */
 export const site = {
-  name: "YOUR SHOP NAME",
+  name: "Ceramic Tint Texas",
+  shortName: "Ceramic Tint",
   tagline: "Ceramic window tint",
+  logoMark: "/brand/logo-mark.png",
+  logoLockup: "/brand/logo-lockup.png",
   city: "Houston",
   region: "Texas",
   address: "YOUR ADDRESS, Houston TX 77000",

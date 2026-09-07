@@ -11,6 +11,11 @@ const geistSans = Geist({
 export const metadata: Metadata = {
   title: `${site.name} | Ceramic window tint in ${site.city}`,
   description: `Ceramic window tint in ${site.city}. $${site.offerPrice} for a sedan: four doors and the back window. Book online, pay at the shop.`,
+  openGraph: {
+    title: `${site.name} | Ceramic window tint in ${site.city}`,
+    description: `Ceramic window tint in ${site.city}. $${site.offerPrice} for a sedan: four doors and the back window. Book online, pay at the shop.`,
+    images: [{ url: site.logoLockup, width: 1600, height: 900, alt: site.name }],
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

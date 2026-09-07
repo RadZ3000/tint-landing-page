@@ -6,23 +6,19 @@ import { site } from "@/lib/site";
 const faqs = [
   {
     q: `What do I get for $${site.offerPrice}?`,
-    a: `Four doors and the back window in ceramic film. Windshield, sun strip, sunroof, and peeling old tint are extra. You don't pay anything to book.`,
+    a: "Four doors and the back window in ceramic film. That’s the sedan package.",
   },
   {
     q: "How long does it take?",
-    a: "Most cars are about two hours. SUVs and extra glass run longer. We'll text you a time once we confirm the schedule.",
+    a: "Most sedans are in and out in about two hours.",
   },
   {
     q: "What's the difference between ceramic and regular tint?",
-    a: "Regular dyed tint makes the windows dark. It still lets a lot of heat through, and it can turn purple. Ceramic cuts infrared heat and UV, and it doesn't have metal in it, so your radio, GPS, and key fob keep working.",
-  },
-  {
-    q: "Do I need a credit card to book?",
-    a: "No. Pick a day and time, we'll confirm, and you pay when the car is done.",
+    a: "Regular dyed tint makes the windows dark. It still lets heat through, and it can turn purple. Ceramic cuts infrared heat and UV, and it doesn’t mess with your radio, GPS, or fob.",
   },
   {
     q: "Can you do 5% on the front windows?",
-    a: "Not on this job. Texas says the front sides have to let at least 25% of light through (film plus the factory glass). We can go dark in the back.",
+    a: "Not on the fronts. Texas requires at least 25% light through those windows. We can go dark in the back.",
   },
   {
     q: "Where are you?",

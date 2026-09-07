@@ -1,6 +1,6 @@
-# Ceramic tint landing
+# Ceramic Tint Texas
 
-Next.js booking page for ceramic window tint. Deployed at [ceramictinttexas.com](https://ceramictinttexas.com).
+Next.js booking page. Deployed at [ceramictinttexas.com](https://ceramictinttexas.com).
 
 - Houston sedan package, **$349**
 - Book online, no deposit
@@ -11,4 +11,4 @@ npm install
 npm run dev
 ```
 
-Fill in shop name, phone, and address in `lib/site.ts` before ads.
+Phone and address in `lib/site.ts` still need real values before ads.
