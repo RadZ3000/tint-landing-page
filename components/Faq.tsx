@@ -22,7 +22,7 @@ const faqs = [
   },
   {
     q: "Where are you?",
-    a: `Based in ${site.city}. We cover the metro and nearby suburbs.`,
+    a: `Based in ${site.city}. Book a time online.`,
   },
 ];
 

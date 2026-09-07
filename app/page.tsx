@@ -74,9 +74,6 @@ export default function Home() {
     <div className="flex min-h-full flex-col bg-slate-950">
       <div className="bg-sky-700 px-4 py-2 text-center text-[12px] font-medium text-white">
         Ceramic sedan tint · ${site.offerPrice} · {site.city}
-        <span className="mt-1 block text-sky-100/90 sm:mt-0 sm:ml-3 sm:inline">
-          {site.address}
-        </span>
       </div>
 
       <header className="sticky top-0 z-30 flex items-center justify-between border-b border-white/10 bg-black/70 px-4 py-3 backdrop-blur-md sm:px-8">
@@ -103,10 +100,10 @@ export default function Home() {
           </span>
         </a>
         <a
-          href={site.phoneHref}
+          href="#book"
           className="rounded-md bg-sky-500 px-4 py-2 text-xs font-semibold text-white hover:bg-sky-400 sm:text-sm"
         >
-          Call now
+          Book now
         </a>
       </header>
 
@@ -303,12 +300,6 @@ export default function Home() {
           >
             Book ${site.offerPrice}
           </a>
-          <p className="mt-4 text-sm text-sky-100">
-            or call{" "}
-            <a href={site.phoneHref} className="font-semibold underline">
-              {site.phone}
-            </a>
-          </p>
         </div>
       </section>
 
@@ -330,7 +321,7 @@ export default function Home() {
 
       <footer className="border-t border-white/10 px-4 py-8 text-center text-xs text-white/40">
         <p>© {site.name}</p>
-        <p className="mt-2">{site.address}</p>
+        <p className="mt-2">{site.city}, {site.region}</p>
       </footer>
     </div>
   );

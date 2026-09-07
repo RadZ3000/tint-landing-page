@@ -10,10 +10,10 @@ const geistSans = Geist({
 
 export const metadata: Metadata = {
   title: `${site.name} | Ceramic window tint in ${site.city}`,
-  description: `Ceramic window tint in ${site.city}. $${site.offerPrice} for a sedan: four doors and the back window. Book online, pay at the shop.`,
+  description: `Ceramic window tint in ${site.city}. $${site.offerPrice} for a sedan: four doors and the back window. Book online.`,
   openGraph: {
     title: `${site.name} | Ceramic window tint in ${site.city}`,
-    description: `Ceramic window tint in ${site.city}. $${site.offerPrice} for a sedan: four doors and the back window. Book online, pay at the shop.`,
+    description: `Ceramic window tint in ${site.city}. $${site.offerPrice} for a sedan: four doors and the back window. Book online.`,
     images: [{ url: site.logoLockup, width: 1600, height: 900, alt: site.name }],
   },
 };
