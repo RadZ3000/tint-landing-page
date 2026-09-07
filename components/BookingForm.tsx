@@ -18,7 +18,7 @@ const TIMES = [
 ];
 
 const fieldClass =
-  "w-full rounded-xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-white placeholder:text-white/35 outline-none transition focus:border-sky-400/70 focus:ring-2 focus:ring-sky-500/30";
+  "w-full min-w-0 rounded-xl border border-white/10 bg-black/50 px-4 py-3.5 text-base text-white placeholder:text-white/35 outline-none transition focus:border-sky-400/70 focus:ring-2 focus:ring-sky-500/30";
 
 export function BookingForm() {
   const [make, setMake] = useState("");
@@ -61,7 +61,7 @@ export function BookingForm() {
       setMake("");
     } catch {
       setStatus("err");
-      setError("That didn’t go through. Try again or call us.");
+      setError("That didn’t go through. Try again.");
     }
   }
 
@@ -91,7 +91,7 @@ export function BookingForm() {
   return (
     <form
       onSubmit={onSubmit}
-      className="w-full max-w-md rounded-2xl border border-white/10 bg-black/60 p-5 shadow-[0_20px_80px_rgba(0,0,0,0.55)] backdrop-blur-md sm:p-6"
+      className="w-full min-w-0 max-w-md rounded-2xl border border-white/10 bg-black/60 p-4 shadow-[0_20px_80px_rgba(0,0,0,0.55)] backdrop-blur-md sm:p-6"
     >
       <h3 className="text-center text-xl font-extrabold tracking-wide text-white sm:text-2xl">
         Book your install
@@ -124,7 +124,7 @@ export function BookingForm() {
           placeholder="Email address"
           className={fieldClass}
         />
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
           <select required name="year" defaultValue="" className={fieldClass}>
             <option value="">
               Year
@@ -168,7 +168,7 @@ export function BookingForm() {
             ))}
           </select>
         </div>
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
           <label className="block">
             <span className="mb-1 block text-[11px] font-semibold uppercase tracking-wider text-white/40">
               Preferred date
@@ -216,7 +216,7 @@ export function BookingForm() {
       <button
         type="submit"
         disabled={status === "saving"}
-        className="mt-5 w-full rounded-full bg-sky-500 py-3.5 text-base font-extrabold text-white shadow-[0_10px_40px_rgba(14,165,233,0.35)] transition hover:bg-sky-400 disabled:opacity-60"
+        className="mt-5 min-h-12 w-full touch-manipulation rounded-full bg-sky-500 py-3.5 text-base font-extrabold text-white shadow-[0_10px_40px_rgba(14,165,233,0.35)] transition hover:bg-sky-400 disabled:opacity-60"
       >
         {status === "saving" ? "Sending…" : "Book now"}
       </button>

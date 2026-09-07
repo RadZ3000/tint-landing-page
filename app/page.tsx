@@ -48,6 +48,14 @@ const included = [
   "Texas-legal front windows",
 ];
 
+const tintLaw = [
+  ["Windshield", "A strip at the top only, unless you have a medical exemption"],
+  ["Front windows", "25% or lighter (film + factory tint)"],
+  ["Rear side windows", "Any darkness"],
+  ["Back window", "Any darkness"],
+  ["Reflective film", "No more than 25% mirror"],
+] as const;
+
 const heroImage =
   "https://images.unsplash.com/photo-1485291571150-772bcfc10da5?auto=format&fit=crop&w=2000&q=80";
 
@@ -71,44 +79,45 @@ const moodShots = [
 
 export default function Home() {
   return (
-    <div className="flex min-h-full flex-col bg-slate-950">
-      <div className="bg-sky-700 px-4 py-2 text-center text-[12px] font-medium text-white">
-        Ceramic sedan tint · ${site.offerPrice} · {site.city}
+    <div className="flex min-h-full flex-col overflow-x-clip bg-slate-950">
+      <div className="sticky top-0 z-30">
+        <div className="bg-sky-700 px-4 py-2 pt-[max(0.5rem,env(safe-area-inset-top))] text-center text-[12px] font-medium text-white">
+          Ceramic sedan tint · ${site.offerPrice} · {site.city}
+        </div>
+        <header className="flex items-center justify-between gap-3 border-b border-white/10 bg-black/80 px-4 py-3 backdrop-blur-md sm:px-8">
+          <a
+            href="#book"
+            aria-label={site.name}
+            className="flex min-w-0 items-center gap-2.5"
+          >
+            <Image
+              src={site.logoMark}
+              alt=""
+              width={36}
+              height={36}
+              className="h-9 w-9 shrink-0 rounded-md"
+              priority
+            />
+            <span className="leading-none" aria-hidden="true">
+              <span className="block text-sm font-semibold tracking-tight text-white sm:text-[15px]">
+                {site.shortName}
+              </span>
+              <span className="mt-1 block text-[10px] font-semibold uppercase tracking-[0.22em] text-sky-400">
+                Texas
+              </span>
+            </span>
+          </a>
+          <a
+            href="#book"
+            className="inline-flex min-h-11 shrink-0 touch-manipulation items-center justify-center rounded-md bg-sky-500 px-4 text-sm font-semibold text-white hover:bg-sky-400"
+          >
+            Book now
+          </a>
+        </header>
       </div>
 
-      <header className="sticky top-0 z-30 flex items-center justify-between border-b border-white/10 bg-black/70 px-4 py-3 backdrop-blur-md sm:px-8">
-        <a
-          href="#book"
-          aria-label={site.name}
-          className="flex items-center gap-2.5"
-        >
-          <Image
-            src={site.logoMark}
-            alt=""
-            width={36}
-            height={36}
-            className="h-9 w-9 rounded-md"
-            priority
-          />
-          <span className="leading-none" aria-hidden="true">
-            <span className="block text-sm font-semibold tracking-tight text-white sm:text-[15px]">
-              {site.shortName}
-            </span>
-            <span className="mt-1 block text-[10px] font-semibold uppercase tracking-[0.22em] text-sky-400">
-              Texas
-            </span>
-          </span>
-        </a>
-        <a
-          href="#book"
-          className="rounded-md bg-sky-500 px-4 py-2 text-xs font-semibold text-white hover:bg-sky-400 sm:text-sm"
-        >
-          Book now
-        </a>
-      </header>
-
       <section
-        className="relative overflow-hidden px-4 pb-16 pt-10 sm:px-6 sm:pt-14"
+        className="relative overflow-hidden px-4 pb-12 pt-8 sm:px-6 sm:pb-16 sm:pt-14"
         style={{
           backgroundImage: `linear-gradient(180deg, rgba(2,6,23,0.62) 0%, rgba(2,6,23,0.88) 58%, #020617 100%), url(${heroImage})`,
           backgroundSize: "cover",
@@ -120,7 +129,7 @@ export default function Home() {
             <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-sky-300">
               {site.city} ceramic tint
             </p>
-            <h1 className="mt-4 max-w-xl text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl">
+            <h1 className="mt-4 max-w-xl text-[1.85rem] font-bold leading-[1.12] tracking-tight text-white sm:text-4xl sm:leading-[1.05] lg:text-5xl">
               Your car shouldn’t feel like an oven.{" "}
               <span className="text-sky-400">
                 Ceramic tint, ${site.offerPrice}.
@@ -130,8 +139,8 @@ export default function Home() {
               Ceramic on four doors and the back glass. It cuts heat and UV
               without killing your radio. Book a time in {site.city}.
             </p>
-            <div className="mt-6 flex flex-wrap items-baseline gap-3">
-              <span className="text-5xl font-bold text-white">
+            <div className="mt-6 flex flex-col items-start gap-1 sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-3">
+              <span className="text-4xl font-bold text-white sm:text-5xl">
                 ${site.offerPrice}
               </span>
               <span className="text-sm text-white/50">
@@ -148,7 +157,10 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div id="book" className="flex justify-center lg:justify-end">
+          <div
+            id="book"
+            className="flex w-full min-w-0 scroll-mt-[calc(7.5rem+env(safe-area-inset-top,0px))] justify-center lg:justify-end"
+          >
             <BookingForm />
           </div>
         </div>
@@ -169,7 +181,7 @@ export default function Home() {
         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-sky-400">
           The ${site.offerPrice} sedan
         </p>
-        <h2 className="mt-2 text-3xl font-bold tracking-tight">
+        <h2 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">
           What’s included
         </h2>
         <p className="mt-3 max-w-2xl text-sm leading-6 text-white/60">
@@ -187,7 +199,7 @@ export default function Home() {
         </div>
         <a
           href="#book"
-          className="mt-8 inline-flex rounded-md bg-sky-500 px-6 py-3 text-sm font-semibold text-white hover:bg-sky-400"
+          className="mt-8 inline-flex min-h-12 touch-manipulation items-center rounded-md bg-sky-500 px-6 py-3 text-sm font-semibold text-white hover:bg-sky-400"
         >
           Book ${site.offerPrice}
         </a>
@@ -198,7 +210,7 @@ export default function Home() {
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-sky-400">
             Built for {site.city}
           </p>
-          <h2 className="mt-2 max-w-xl text-3xl font-bold tracking-tight">
+          <h2 className="mt-2 max-w-xl text-2xl font-bold tracking-tight sm:text-3xl">
             Why ceramic
           </h2>
           <p className="mt-3 max-w-2xl text-sm leading-6 text-white/60">
@@ -243,7 +255,7 @@ export default function Home() {
             {reasons.map((item) => (
               <article
                 key={item.title}
-                className="rounded-xl border border-white/10 p-5"
+                className="rounded-xl border border-white/10 p-5 last:sm:col-span-2"
               >
                 <h3 className="font-semibold text-white">{item.title}</h3>
                 <p className="mt-2 text-sm leading-6 text-white/60">{item.body}</p>
@@ -254,21 +266,23 @@ export default function Home() {
       </section>
 
       <section className="mx-auto w-full max-w-3xl px-4 py-16 sm:px-6">
-        <h2 className="text-3xl font-bold tracking-tight">Texas tint law</h2>
+        <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">Texas tint law</h2>
         <p className="mt-3 text-sm leading-6 text-white/60">
           Fronts stay legal. Rears as dark as you want. We’ll set the shades
           when you’re here.
         </p>
         <div className="mt-8 overflow-hidden rounded-xl border border-white/10">
-          <table className="w-full text-left text-sm">
+          <div className="divide-y divide-white/10 sm:hidden">
+            {tintLaw.map(([label, value]) => (
+              <div key={label} className="px-4 py-3">
+                <p className="text-sm font-medium text-sky-300">{label}</p>
+                <p className="mt-1 text-sm leading-6 text-white/70">{value}</p>
+              </div>
+            ))}
+          </div>
+          <table className="hidden w-full text-left text-sm sm:table">
             <tbody>
-              {[
-                ["Windshield", "A strip at the top only, unless you have a medical exemption"],
-                ["Front windows", "25% or lighter (film + factory tint)"],
-                ["Rear side windows", "Any darkness"],
-                ["Back window", "Any darkness"],
-                ["Reflective film", "No more than 25% mirror"],
-              ].map(([label, value]) => (
+              {tintLaw.map(([label, value]) => (
                 <tr key={label} className="border-b border-white/10 last:border-0">
                   <th className="w-40 bg-white/[0.03] px-4 py-3 font-medium text-sky-300">
                     {label}
@@ -282,13 +296,13 @@ export default function Home() {
       </section>
 
       <section className="mx-auto w-full max-w-3xl px-4 pb-16 sm:px-6">
-        <h2 className="mb-6 text-3xl font-bold tracking-tight">FAQ</h2>
+        <h2 className="mb-6 text-2xl font-bold tracking-tight sm:text-3xl">FAQ</h2>
         <Faq />
       </section>
 
       <section className="px-4 pb-16 sm:px-6">
-        <div className="mx-auto max-w-4xl rounded-2xl bg-sky-700 px-6 py-12 text-white sm:px-12">
-          <h2 className="text-3xl font-bold tracking-tight">
+        <div className="mx-auto max-w-4xl rounded-2xl bg-sky-700 px-5 py-10 text-white sm:px-12 sm:py-12">
+          <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
             Get on the schedule
           </h2>
           <p className="mt-3 max-w-xl text-sky-100">
@@ -296,7 +310,7 @@ export default function Home() {
           </p>
           <a
             href="#book"
-            className="mt-6 inline-flex rounded-md bg-white px-8 py-3 text-sm font-semibold text-sky-800 hover:bg-sky-50"
+            className="mt-6 inline-flex min-h-12 touch-manipulation items-center rounded-md bg-white px-8 py-3 text-sm font-semibold text-sky-800 hover:bg-sky-50"
           >
             Book ${site.offerPrice}
           </a>
@@ -319,7 +333,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="border-t border-white/10 px-4 py-8 text-center text-xs text-white/40">
+      <footer className="border-t border-white/10 px-4 py-8 pb-[max(2rem,env(safe-area-inset-bottom))] text-center text-xs text-white/40">
         <p>© {site.name}</p>
         <p className="mt-2">{site.city}, {site.region}</p>
       </footer>

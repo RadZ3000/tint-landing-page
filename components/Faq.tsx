@@ -40,7 +40,7 @@ export function Faq() {
           >
             <button
               type="button"
-              className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-sm font-semibold text-white"
+              className="flex min-h-11 w-full touch-manipulation items-center justify-between gap-4 px-4 py-4 text-left text-sm font-semibold text-white sm:px-5"
               onClick={() => setOpen(isOpen ? null : index)}
             >
               {item.q}
