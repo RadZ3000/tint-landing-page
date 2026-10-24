@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { BookingForm } from "@/components/BookingForm";
 import { Faq } from "@/components/Faq";
 import { site } from "@/lib/site";
@@ -90,7 +91,7 @@ export default function Home() {
             aria-label={site.name}
             className="flex min-w-0 items-center gap-2.5"
           >
-            <Image
+            <ResponsiveImage
               src={site.logoMark}
               alt=""
               width={36}
@@ -224,12 +225,12 @@ export default function Home() {
                 className="overflow-hidden rounded-xl border border-white/10 bg-black"
               >
                 <div className="relative h-64 w-full sm:h-80">
-                  <Image
+                  <ResponsiveImage
                     src={shot.src}
                     alt={shot.alt}
-                    fill
-                    sizes="(min-width: 768px) 50vw, 100vw"
-                    className="object-cover"
+                    width={1600}
+                    height={shot.src.includes("parked-sun") ? 2400 : 1067}
+                    className="h-full w-full object-cover"
                     style={{ objectPosition: shot.objectPosition }}
                   />
                 </div>
