@@ -1,9 +1,14 @@
-const fs = require("fs");
-const path = require("path");
-const crypto = require("crypto");
+import fs from "node:fs";
+import path from "node:path";
+import crypto from "node:crypto";
 
 const PUBLIC_DIR = path.join(process.cwd(), "public");
 const MANIFEST_PATH = path.join(process.cwd(), "lib", "generated", "image-variants.json");
+
+function sha256File(filePath) {
+  const content = fs.readFileSync(filePath);
+  return crypto.createHash("sha256").update(content).digest("hex");
+}
 
 function discoverImages() {
   const images = [];
@@ -61,6 +66,23 @@ function checkImages() {
   }
 
   for (const [src, data] of Object.entries(manifest)) {
+    const sourcePath = path.join(PUBLIC_DIR, src.substring(1));
+    
+    if (!fs.existsSync(sourcePath)) {
+      console.error(`❌ Source image missing: ${sourcePath}`);
+      console.error("\nRun: npm run optimize:images");
+      process.exit(1);
+    }
+
+    const currentHash = sha256File(sourcePath);
+    if (data.sha256 !== currentHash) {
+      console.error(`❌ Source image changed: ${src}`);
+      console.error(`   Expected hash: ${data.sha256}`);
+      console.error(`   Current hash:  ${currentHash}`);
+      console.error("\nRun: npm run optimize:images");
+      process.exit(1);
+    }
+
     const pathWithoutExt = src.replace(/\.[^/.]+$/, "");
     const basePath = pathWithoutExt.replace(/^\//, "");
 

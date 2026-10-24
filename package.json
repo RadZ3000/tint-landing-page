@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "npm run check:images && next build",
-    "check:images": "node scripts/check-images.js",
+    "check:images": "node scripts/check-images.mjs",
     "optimize:images": "tsx scripts/optimize-images.ts",
     "start": "next start",
     "lint": "eslint"

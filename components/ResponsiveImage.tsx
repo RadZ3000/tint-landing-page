@@ -46,7 +46,8 @@ export function ResponsiveImage({
         alt={alt} 
         className={className}
         style={style}
-        loading={priority ? undefined : "lazy"}
+        loading={priority ? "eager" : "lazy"}
+        fetchPriority={priority ? "high" : undefined}
       />
     );
   }
@@ -72,7 +73,8 @@ export function ResponsiveImage({
       height={imageData.height}
       style={style}
       className={className}
-      loading={priority ? undefined : "lazy"}
+      loading={priority ? "eager" : "lazy"}
+      fetchPriority={priority ? "high" : undefined}
     />
   );
 }

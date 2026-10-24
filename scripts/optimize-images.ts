@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import sharp from "sharp";
+import crypto from "crypto";
 
 const PUBLIC_DIR = path.join(process.cwd(), "public");
 const OUTPUT_DIR = path.join(PUBLIC_DIR, "optimized");
@@ -12,6 +13,7 @@ interface ImageVariant {
   width: number;
   height: number;
   variants: number[];
+  sha256: string;
 }
 
 type Manifest = Record<string, ImageVariant>;
@@ -60,6 +62,9 @@ async function optimizeImage(imagePath: string): Promise<ImageVariant> {
     throw new Error(`Could not read dimensions for ${imagePath}`);
   }
 
+  const sourceContent = fs.readFileSync(fullPath);
+  const sha256 = crypto.createHash("sha256").update(sourceContent).digest("hex");
+
   const isPng = ext.toLowerCase() === ".png";
   const generatedWidths: number[] = [];
 
@@ -82,13 +87,12 @@ async function optimizeImage(imagePath: string): Promise<ImageVariant> {
     console.log(`✓ Generated ${path.relative(PUBLIC_DIR, outputPath)}`);
     generatedWidths.push(width);
   }
-
-  const aspectRatio = originalHeight / originalWidth;
   
   return {
     width: originalWidth,
     height: originalHeight,
     variants: generatedWidths,
+    sha256,
   };
 }
 

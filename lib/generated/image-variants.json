@@ -7,7 +7,8 @@
       480,
       960,
       1080
-    ]
+    ],
+    "sha256": "bdc2e6b161cd45b7033a91014d31f70f41a07c8af4e558110f267a57aff91606"
   },
   "/brand/logo-mark.png": {
     "width": 512,
@@ -16,7 +17,8 @@
       96,
       480,
       512
-    ]
+    ],
+    "sha256": "28cbc8446cc1c7504dda6e71a2abdbdd85cf3455ca337ff8cd33bee6dae40ad2"
   },
   "/mood/cabin-glare.jpg": {
     "width": 2000,
@@ -26,7 +28,8 @@
       480,
       960,
       1600
-    ]
+    ],
+    "sha256": "0253268f174ee09b527dc220b13945822edcec25b9fc60f947c08d0d57884d8e"
   },
   "/mood/parked-sun.jpg": {
     "width": 2000,
@@ -36,6 +39,7 @@
       480,
       960,
       1600
-    ]
+    ],
+    "sha256": "8c6f390a11816fa0d03b19552d97e9ff0a89361b84f2eed18f415d8be51d20bc"
   }
 }
