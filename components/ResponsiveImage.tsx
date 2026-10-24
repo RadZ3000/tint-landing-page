@@ -30,6 +30,7 @@ export function ResponsiveImage({ src, alt, width, height, className, style, pri
   }
 
   return (
+    // eslint-disable-next-line @next/next/no-img-element
     <img
       src={defaultSrc}
       srcSet={srcset}

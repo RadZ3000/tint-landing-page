@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { BookingForm } from "@/components/BookingForm";
 import { Faq } from "@/components/Faq";
