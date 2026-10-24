@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run optimize:images && next build",
+    "build": "npm run check:images && next build",
+    "check:images": "node scripts/check-images.js",
     "optimize:images": "tsx scripts/optimize-images.ts",
     "start": "next start",
     "lint": "eslint"
@@ -19,7 +20,6 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@types/sharp": "^0.31.1",
     "eslint": "^9",
     "eslint-config-next": "16.3.4",
     "sharp": "^0.35.5",

@@ -93,8 +93,7 @@ export default function Home() {
             <ResponsiveImage
               src={site.logoMark}
               alt=""
-              width={36}
-              height={36}
+              sizes="36px"
               className="h-9 w-9 shrink-0 rounded-md"
               priority
             />
@@ -227,8 +226,7 @@ export default function Home() {
                   <ResponsiveImage
                     src={shot.src}
                     alt={shot.alt}
-                    width={1600}
-                    height={shot.src.includes("parked-sun") ? 2400 : 1067}
+                    sizes="(min-width: 768px) 50vw, 100vw"
                     className="h-full w-full object-cover"
                     style={{ objectPosition: shot.objectPosition }}
                   />

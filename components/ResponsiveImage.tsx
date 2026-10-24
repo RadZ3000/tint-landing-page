@@ -1,42 +1,75 @@
 import Image, { ImageProps } from "next/image";
+import manifest from "@/lib/generated/image-variants.json";
 
-interface ResponsiveImageProps extends Omit<ImageProps, "src"> {
+interface ResponsiveImageProps extends Omit<ImageProps, "src" | "width" | "height"> {
   src: string;
   alt: string;
-  width: number;
-  height: number;
+  sizes?: string;
 }
 
-export function ResponsiveImage({ src, alt, width, height, className, style, priority, ...props }: ResponsiveImageProps) {
+const isDev = process.env.NODE_ENV === "development";
+
+export function ResponsiveImage({ 
+  src, 
+  alt, 
+  sizes,
+  className, 
+  style, 
+  priority,
+  ...props 
+}: ResponsiveImageProps) {
   if (src.startsWith("http://") || src.startsWith("https://")) {
-    return <Image src={src} alt={alt} width={width} height={height} className={className} style={style} priority={priority} {...props} />;
+    return (
+      <Image 
+        src={src} 
+        alt={alt} 
+        fill
+        sizes={sizes}
+        className={className} 
+        style={style} 
+        priority={priority} 
+        {...props} 
+      />
+    );
+  }
+
+  const imageData = manifest[src as keyof typeof manifest];
+  
+  if (!imageData) {
+    if (isDev) {
+      console.warn(`ResponsiveImage: No manifest entry for "${src}", falling back to original`);
+    }
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img 
+        src={src} 
+        alt={alt} 
+        className={className}
+        style={style}
+        loading={priority ? undefined : "lazy"}
+      />
+    );
   }
 
   const pathWithoutExt = src.replace(/\.[^/.]+$/, "");
   const basePath = pathWithoutExt.replace(/^\//, "");
 
-  let srcset = "";
-  let defaultSrc = "";
+  const srcset = imageData.variants
+    .map((width) => `/optimized/${basePath}-${width}w.webp ${width}w`)
+    .join(", ");
 
-  if (basePath.includes("logo-mark")) {
-    srcset = `/optimized/${basePath}-480w.webp 480w, /optimized/${basePath}-512w.webp 512w`;
-    defaultSrc = `/optimized/${basePath}-512w.webp`;
-  } else if (basePath.includes("logo-lockup")) {
-    srcset = `/optimized/${basePath}-480w.webp 480w, /optimized/${basePath}-960w.webp 960w, /optimized/${basePath}-1080w.webp 1080w`;
-    defaultSrc = `/optimized/${basePath}-960w.webp`;
-  } else {
-    srcset = `/optimized/${basePath}-480w.webp 480w, /optimized/${basePath}-960w.webp 960w, /optimized/${basePath}-1600w.webp 1600w`;
-    defaultSrc = `/optimized/${basePath}-960w.webp`;
-  }
+  const defaultWidth = imageData.variants[Math.floor(imageData.variants.length / 2)];
+  const defaultSrc = `/optimized/${basePath}-${defaultWidth}w.webp`;
 
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
       src={defaultSrc}
       srcSet={srcset}
+      sizes={sizes}
       alt={alt}
-      width={width}
-      height={height}
+      width={imageData.width}
+      height={imageData.height}
       style={style}
       className={className}
       loading={priority ? undefined : "lazy"}

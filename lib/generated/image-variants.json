@@ -1,0 +1,41 @@
+{
+  "/brand/logo-lockup.png": {
+    "width": 1080,
+    "height": 720,
+    "variants": [
+      96,
+      480,
+      960,
+      1080
+    ]
+  },
+  "/brand/logo-mark.png": {
+    "width": 512,
+    "height": 512,
+    "variants": [
+      96,
+      480,
+      512
+    ]
+  },
+  "/mood/cabin-glare.jpg": {
+    "width": 2000,
+    "height": 1333,
+    "variants": [
+      96,
+      480,
+      960,
+      1600
+    ]
+  },
+  "/mood/parked-sun.jpg": {
+    "width": 2000,
+    "height": 3000,
+    "variants": [
+      96,
+      480,
+      960,
+      1600
+    ]
+  }
+}
